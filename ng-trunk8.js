@@ -1,11 +1,11 @@
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define(['angular', 'jquery', 'trunk8'], factory);
+        define(['angular', 'jquery'], factory);
     } else if (typeof exports === 'object') {
         // Node. Does not work with strict CommonJS, but
         // only CommonJS-like environments that support module.exports, like Node.
-        module.exports = factory(require('angular'), require('jquery'), require('trunk8'));
+        module.exports = factory(require('angular'), require('jquery'));
     } else {
         // Browser globals (root is window)
         root.returnExports = factory(root.angular, root.jQuery);
@@ -50,7 +50,7 @@
                 elem.trunk8(config)
 
                 if (config.expendable) {
-                    $(elem).on('click', '#' + readMoreId, function (evt) {
+                    elem.on('click', '#' + readMoreId, function (evt) {
                         elem.trunk8('revert').append(lessBtn)
                         lessBtn.on('click', function (evt) {
                             elem.trunk8()
