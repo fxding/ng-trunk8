@@ -1,0 +1,47 @@
+<!doctype html>
+<html ng-app="app">
+	<head>
+		<title>ng-Trunk8</title>
+		
+		<style>
+			.wrapper {
+				border: 2px solid #000;
+				line-height: 20px;
+				width: 676px;
+			}
+			
+			.trunk8-fill {
+				color: #f00;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	
+	<body ng-controller="Trunk8Ctrl as vm">
+		
+		<div class="wrapper">
+			<span id="txt" trunk8="{ parseHTML:false, onTruncate: vm.onTruncate, expendable: true}" ><s>Lorem ipsum dolor</s> sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+			<br>
+			<span trunk8="{text: vm.text, more: '+more', less: '-lessssss', expendable: true}"></span>
+		</div>
+		
+		<script src="./node_modules/jquery/dist/jquery.js"></script>
+		<script src="./node_modules/angular/angular.js"></script>
+		<script src="./node_modules/fx-trunk8/trunk8.js"></script>
+		<script src="./ng-trunk8.js"></script>
+		<script>
+			angular.module('app', ['ng-trunk8']).config(function (trunk8ConfigProvider) {
+				trunk8ConfigProvider.setConfig({
+					lines: 1
+				})
+			}).controller('Trunk8Ctrl', function () {
+				var vm = this
+				vm.text = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+
+				vm.onTruncate = function () {
+					console.log('truncated')
+				}
+			})
+		</script>
+	</body>
+</html>
