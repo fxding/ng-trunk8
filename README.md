@@ -43,6 +43,7 @@ Settings
 * **onTruncate** _(Callback)_: Called after truncation is completed.
 * **text** : text will be truncated. if not gave, element.html() will be truncated.
 * **expendable** _(Default: false)_ When true, add expend link and collapse link at the end. you can customuze the two links by setting `more` and `less` config item.
+* **resizeable** _(Default: true)_ When true, will retruncate text to fill current window size.
 * **more** _(Default: 'more')_ text for expend link.
 * **less** _(Default: 'less')_ text for collapes link. 
 

@@ -21,7 +21,7 @@
         this.setConfig = function (cfg) {
             config = cfg
         }
-    }).directive('trunk8', ['trunk8Config', function (trunk8Config) {
+    }).directive('trunk8', ['trunk8Config', '$window', function (trunk8Config,  $window) {
 
         return {
             restrict: 'EA',
@@ -31,6 +31,7 @@
             link: function (scope, elem, attrs) {
                 var config = angular.extend({
                     expendable: false,
+                    resizable: true,
                     more: 'more',
                     less: 'less',
                     fill: '&hellip;'
@@ -49,6 +50,7 @@
                 }
                 elem.trunk8(config)
 
+                // for expend/collapse
                 if (config.expendable) {
                     elem.on('click', '#' + readMoreId, function (evt) {
                         elem.trunk8('revert').append(lessBtn)
@@ -62,6 +64,13 @@
                 if (config.text) {
                     scope.$watch('trunk8.text', function (nValue) {
                         elem.trunk8('update', nValue)
+                    })
+                }
+
+                // for resize
+                if (config.resizable) {
+                    $($window).resize(function () {
+                        elem.trunk8()
                     })
                 }
             }
